@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Should I Buy This? AI — An AI-powered behavioral decision tool that helps you decide whether to buy something impulsively.">
+    <title>Should I Buy This? AI — Impulse Purchase Decision Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating decorative blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-title">ShouldIBuyThis<span class="accent">?</span></span>
+        </div>
+        <div class="nav-tagline">AI Impulse Advisor</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                AI-Powered Decision Making
+            </div>
+            <h1 class="hero-title">
+                Think Before<br>
+                You <span class="hero-accent">Buy</span><span class="hero-period">.</span>
+            </h1>
+            <p class="hero-subtitle">
+                An AI behavioral tool that intervenes at the moment of impulse. 
+                Get a logical breakdown, bias detection, and a clear verdict — 
+                before your wallet regrets it.
+            </p>
+            <!-- FIX: scrollToForm is defined in app.js loaded at bottom of body — works fine -->
+            <button class="hero-cta" id="hero-cta" onclick="scrollToForm()">
+                Analyze a Purchase
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+            </button>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card-stack">
+                <div class="floating-card fc-1">
+                    <span class="fc-emoji">🛍️</span>
+                    <span class="fc-text">New sneakers — $189</span>
+                    <span class="fc-verdict fc-red">Don't Buy</span>
+                </div>
+                <div class="floating-card fc-2">
+                    <span class="fc-emoji">💻</span>
+                    <span class="fc-text">MacBook Pro — $2,499</span>
+                    <span class="fc-verdict fc-amber">Wait</span>
+                </div>
+                <div class="floating-card fc-3">
+                    <span class="fc-emoji">📚</span>
+                    <span class="fc-text">Online course — $49</span>
+                    <span class="fc-verdict fc-green">Buy</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Input Form Section -->
+    <section class="form-section" id="form-section">
+        <div class="section-header">
+            <span class="section-label">Analyze</span>
+            <h2 class="section-title">What Are You<br>Tempted to <span class="accent">Buy</span>?</h2>
+        </div>
+        <div class="form-container">
+            <form id="purchase-form" class="purchase-form" autocomplete="off">
+                <div class="form-grid">
+                    <div class="form-group" id="form-group-product">
+                        <label for="product-name" class="form-label">
+                            <span class="label-icon">🛒</span>
+                            Product Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="product-name" 
+                            class="form-input" 
+                            placeholder="e.g., iPhone 16 Pro, Nike Air Max, PS5…"
+                            required
+                        >
+                    </div>
+                    <div class="form-group" id="form-group-price">
+                        <label for="product-price" class="form-label">
+                            <span class="label-icon">💰</span>
+                            Price
+                        </label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input 
+                                type="number" 
+                                id="product-price" 
+                                class="form-input" 
+                                placeholder="0.00"
+                                step="0.01"
+                                min="0"
+                                required
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group" id="form-group-income">
+                        <label for="monthly-income" class="form-label">
+                            <span class="label-icon">💵</span>
+                            Monthly Income / Budget
+                        </label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input 
+                                type="number" 
+                                id="monthly-income" 
+                                class="form-input" 
+                                placeholder="0.00"
+                                step="0.01"
+                                min="0"
+                                required
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group form-group-full" id="form-group-reason">
+                        <label for="purchase-reason" class="form-label">
+                            <span class="label-icon">💭</span>
+                            Why do you want this? <span class="label-optional">(optional)</span>
+                        </label>
+                        <textarea 
+                            id="purchase-reason" 
+                            class="form-input form-textarea" 
+                            placeholder="Be honest with yourself… e.g., 'I saw an influencer using it', 'It's on sale and I don't want to miss out'"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-analyze" id="btn-analyze">
+                        <span class="btn-text">Analyze My Purchase</span>
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span>
+                            Analyzing…
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Result Section -->
+    <section class="result-section" id="result-section" style="display: none;">
+        <div class="section-header">
+            <span class="section-label">Your Result</span>
+            <h2 class="section-title">The <span class="accent">Verdict</span> Is In</h2>
+        </div>
+
+        <div class="result-container" id="result-container">
+            <!-- Verdict Banner -->
+            <div class="verdict-banner" id="verdict-banner">
+                <div class="verdict-icon" id="verdict-icon">✅</div>
+                <div class="verdict-label" id="verdict-label">BUY</div>
+                <div class="verdict-tagline" id="verdict-tagline">This one checks out.</div>
+            </div>
+
+            <!-- Result Cards Grid -->
+            <div class="result-grid">
+                <!-- Logical Analysis Card -->
+                <div class="result-card card-analysis" id="card-analysis">
+                    <div class="result-card-header">
+                        <span class="rc-icon">🔍</span>
+                        <h3 class="rc-title">Logical Analysis</h3>
+                    </div>
+                    <!-- FIX: id="analysis-body" matches renderResult() in app.js -->
+                    <div class="rc-body" id="analysis-body"></div>
+                </div>
+
+                <!-- Financial Snapshot Card -->
+                <div class="result-card card-financial" id="card-financial">
+                    <div class="result-card-header">
+                        <span class="rc-icon">📊</span>
+                        <h3 class="rc-title">Financial Snapshot</h3>
+                    </div>
+                    <!-- FIX: id="financial-body" matches renderResult() in app.js -->
+                    <div class="rc-body" id="financial-body"></div>
+                </div>
+
+                <!-- Emotional Biases Card -->
+                <div class="result-card card-biases" id="card-biases">
+                    <div class="result-card-header">
+                        <span class="rc-icon">🧠</span>
+                        <h3 class="rc-title">Emotional Biases Detected</h3>
+                    </div>
+                    <!-- FIX: id="biases-body" matches renderResult() in app.js -->
+                    <div class="rc-body" id="biases-body"></div>
+                </div>
+
+                <!-- Verdict Explanation Card -->
+                <div class="result-card card-explanation" id="card-explanation">
+                    <div class="result-card-header">
+                        <span class="rc-icon">📋</span>
+                        <h3 class="rc-title">Verdict Explanation</h3>
+                    </div>
+                    <!-- FIX: id="explanation-body" matches renderResult() in app.js -->
+                    <div class="rc-body" id="explanation-body"></div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <!-- FIX: resetForm() and shareResult() are now defined in app.js -->
+            <div class="result-actions">
+                <button class="btn-secondary" id="btn-try-again" onclick="resetForm()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    Try Another
+                </button>
+                <button class="btn-secondary" id="btn-share" onclick="shareResult()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                    Share Result
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="nav-icon">🧠</span>
+                <span class="nav-title">ShouldIBuyThis<span class="accent">?</span></span>
+            </div>
+            <p class="footer-text">
+                A behavioral decision tool — not a budgeting app.<br>
+                Made to save you from impulse regret.
+            </p>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">© 2026 ShouldIBuyThis? AI. Think before you swipe.</p>
+        </div>
+    </footer>
+
+    <!-- Script at bottom so DOM is ready before app.js runs -->
+    <script src="app.js"></script>
+</body>
+</html>
