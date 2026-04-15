@@ -23,8 +23,8 @@ if (!API_KEY) {
 // ... (keep all your existing helper functions and /analyze route unchanged)
 
 // ✅ Catch-all: send index.html for any unmatched route
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+app.get("/{*path}", (req, res) => {
+    res.sendFile(path.join(__dirname, 'shoppingp', 'index.html'));
 });
 
 // ✅ Use Railway's dynamic PORT
